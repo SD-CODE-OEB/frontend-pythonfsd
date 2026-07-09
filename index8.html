@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psuedo Classes</title>
+  <style>
+    button {
+      color: red;
+      background-color: yellow;
+      border: 2px solid black;
+      border-radius: 8px;
+      padding: 4px 20px;
+      font-size: 24px;
+      font-style: italic;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      cursor: cell;
+      cursor: not-allowed;
+      cursor: grab;
+      cursor: pointer;
+
+    }
+
+    div {
+      margin: 20px 0
+    }
+
+    a {
+      font-size: 24px;
+      color: green;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    button:hover {
+      color: yellow;
+      background-color: red;
+      box-shadow: 4px 4px 10px black;
+      font-size: 32px;
+    }
+
+    button:active {
+      font-size: 12px;
+      box-shadow: 0px 0px 50px black;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: blue;
+    }
+
+    input {
+      /* border: 5px solid red; */
+      outline: none;
+      padding: 0;
+      background-color: black;
+      color: white;
+    }
+
+    input::placeholder {
+      color: yellow;
+    }
+
+    input:focus {
+      box-shadow: 4px 4px 4px yellow;
+      outline: 8px solid blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS Pseudo classes</h1>
+
+  <button type="button">
+
+    Click here
+  </button>
+
+  <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ut facere quibusdam voluptatibus repellendus
+    ipsum.</div>
+
+  <a href="/">Link here</a>
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input type="text" name="name" id="name" placeholder="Type your name here" />
+  </div>
+</body>
+
+</html>
