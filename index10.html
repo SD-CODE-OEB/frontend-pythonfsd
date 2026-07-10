@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Grids</title>
+  <style>
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .container {
+      height: auto;
+      width: auto;
+      border: 2px solid black;
+      display: grid;
+      padding: 10px;
+      grid-template-columns: 100px 100px 100px auto auto;
+      /* grid-template-rows: repeat(2, 1fr); */
+      grid-template-columns: repeat(5, 1fr);
+      justify-items: center;
+      align-items: center;
+      gap: 12px;
+      row-gap: 25px;
+      column-gap: 18px;
+    }
+
+    .box {
+      height: 80px;
+      width: 80px;
+      border: 2px solid black;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      /* padding: 50px; */
+      display: flex;
+      border-radius: 12px;
+      box-shadow: 2px 2px 10px black;
+      background-color: orange;
+    }
+
+    .box1 {
+      width: 100%;
+      grid-column: span 2;
+    }
+
+    .box7 {
+      grid-column: span 3;
+      width: 100%;
+    }
+
+    .box5 {
+      grid-row: span 2;
+      height: 100%;
+      grid-column: span 2;
+      width: 100%;
+    }
+
+    .box6 {
+      width: 100%;
+      grid-column: span 3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Learning grids</h1>
+  <div class="container">
+    <div class="box box1">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box box5">5</div>
+    <div class="box box6">6</div>
+    <div class="box box7">7</div>
+    <div class="box">8</div>
+    <div class="box">9</div>
+    <div class="box">10</div>
+  </div>
+</body>
+
+</html>

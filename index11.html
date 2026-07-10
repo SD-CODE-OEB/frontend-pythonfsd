@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Queries</title>
+  <style>
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .container {
+      border: 2px solid black;
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 10px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .box {
+      border: 2px solid black;
+      width: 80px;
+      height: 80px;
+    }
+
+    button {
+      padding: 15px 20px;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 2px 8px black;
+      cursor: pointer;
+      transition: background-color color 0.3s ease-in;
+      transition: all 0.3s linear;
+    }
+
+    button:hover {
+      background-color: blue;
+      color: yellow;
+      padding: 15px 30px;
+      /* transition: prop-name 0seconds linear/ease-in/ease-out*/
+    }
+
+    @media screen and (min-width: 500px) {
+      h1 {
+        color: red;
+      }
+    }
+
+    @media screen and (min-width: 600px) {
+      h1 {
+        color: green;
+      }
+
+      /* starting from 468px anf grateer than 468px */
+    }
+
+    @media screen and (max-width:468px) {
+
+      /* maximum is 468px,  everythign below is here */
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 16px;
+        font-weight: 600;
+        color: blue;
+      }
+    }
+
+    @media screen {}
+  </style>
+</head>
+
+<body>
+  <h1>Media Queries</h1>
+  <p>teh meta viewport tag is important , why ?????</p>
+  <div class="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <button type="button">
+    Click here
+  </button>
+</body>
+
+</html>
