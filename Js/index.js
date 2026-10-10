@@ -60,3 +60,4 @@ data.cars.map((car, index) => {
   li.textContent = `${car.name}:${car.model}`
   carsList.appendChild(li)
 })
+
