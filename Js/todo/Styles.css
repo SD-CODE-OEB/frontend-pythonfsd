@@ -1,0 +1,29 @@
+* {
+  margin: 2;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  color: white;
+  background: #000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+label {
+  display: block;
+}
+input {
+  padding: 2px 4px;
+}
+
+.todo-form {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
