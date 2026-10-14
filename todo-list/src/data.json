@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "text": "Buy groceries",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "text": "Finish JavaScript project",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "text": "Walk the dog",
+    "completed": false
+  }
+]
