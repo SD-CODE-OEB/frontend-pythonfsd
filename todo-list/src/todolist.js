@@ -1,97 +1,106 @@
-// A standard todo list array initialized with sample data
-import todoList from './data.json';
+import initialTodoList from './data.json';
 import createTodoLi from './utility';
+
 export const todoListUl = document.getElementById("task-list");
 const addTaskBtn = document.getElementById('add-task-btn');
-const CreateTodoForm = document.querySelector('.todo-form')
+const CreateTodoForm = document.querySelector('.todo-form');
+
+let todoList = [...initialTodoList];
 
 
-function showTodoList() {
-  todoList.forEach((item) => {
-    const todoItem = createTodoLi(item)
-    todoListUl.appendChild(todoItem)
-  })
-}
+console.log(name)
 showTodoList();
-const deleteTaskBtns = document.querySelectorAll('#delete-btn')
 
+addTaskBtn.addEventListener('click', () => {
+  const isAdding = addTaskBtn.innerText.trim().toLowerCase() === "add todo";
+  if (isAdding) {
+    CreateTodoForm.style.display = "flex";
+    addTaskBtn.innerText = "Cancel";
+  } else {
+    CreateTodoForm.style.display = "none";
+    addTaskBtn.innerText = "Add Todo";
+  }
+});
 
 CreateTodoForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const formTodos = new FormData(event.target)
+  const formTodos = new FormData(event.target);
   const data = Object.fromEntries(formTodos.entries());
-  const newTodoText = data['todo-input'];
+  const newTodoText = (data['todo-input'] || '').trim();
 
-  let newTodoItem = {
-    id: todoList.length + 1,
+  if (!newTodoText) return;
+
+  const newTodoItem = {
+    id: Date.now(),
     text: newTodoText,
     completed: false
-  }
+  };
 
-  todoList.push(newTodoItem)
-  const createItem = createTodoLi(newTodoItem)
-  todoListUl.appendChild(createItem)
+  todoList.push(newTodoItem);
+  const createItem = createTodoLi(newTodoItem);
+  todoListUl.appendChild(createItem);
   event.target.reset();
+  CreateTodoForm.style.display = "none";
+  addTaskBtn.innerText = "Add Todo";
+});
 
-})
+todoListUl.addEventListener('click', (event) => {
+  console.log(`[Event Bubbling on UL] Clicked element: <${event.target.tagName.toLowerCase()}> | Handled at: <${event.currentTarget.tagName.toLowerCase()}>`);
 
+  const deleteBtn = event.target.closest('.delete-btn');
+  if (deleteBtn) {
+    const li = deleteBtn.closest('li.todo-item');
+    if (!li) return;
 
+    const todoId = Number(li.dataset.id);
+    const todo = todoList.find((item) => item.id === todoId);
 
+    if (!todo) return;
 
+    if (!todo.completed) {
+      alert("Cannot delete this task! You can only delete tasks that are marked as completed.");
+      return;
+    }
+    const confirmed = confirm(`Are you sure you want to delete "${todo.text}"?`);
+    if (confirmed) {
+      todoList = todoList.filter((item) => item.id !== todoId);
+      li.remove();
+      console.log(`[Delete Success] Todo id ${todoId} deleted.`);
+    }
+    return;
+  }
 
-function handleTodoClick() {
-  const inputCheckBoxes = document.querySelectorAll('.todo-box')
-  console.log(inputCheckBoxes)
-  inputCheckBoxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', (event) => {
-      console.log(event.target.checked, "clikced")
-      const todoText = checkbox.nextElementSibling
-      if (event.target.checked) {
+  if (event.target.classList.contains('todo-box')) {
+    const checkbox = event.target;
+    const li = checkbox.closest('li.todo-item');
+    const todoId = Number(li.dataset.id);
+    const todo = todoList.find((item) => item.id === todoId);
 
-        todoText.style.textDecoration = 'line-through'
-        todoText.style.color = 'gray'
-      } else {
-        todoText.style.textDecoration = 'none'
-        todoText.style.color = 'black'
+    if (todo) {
+      todo.completed = checkbox.checked;
+      const textSpan = li.querySelector('.todo-text');
+      if (textSpan) {
+        if (todo.completed) {
+          textSpan.classList.add('line-through', 'text-gray-500');
+        } else {
+          textSpan.classList.remove('line-through', 'text-gray-500');
+        }
       }
-    })
-  })
-}
-
-
-
-addTaskBtn.addEventListener('click', (event) => {
-  if (addTaskBtn.innerText.trim().toLocaleLowerCase() === "add todo") {
-    CreateTodoForm.style.display = "flex"
-    addTaskBtn.innerText = "Cancel"
-  } else if (addTaskBtn.innerText.trim().toLocaleLowerCase() === "cancel") {
-    CreateTodoForm.style.display = "none"
-    addTaskBtn.innerText = "Add Todo"
+      console.log(`[Status Changed] Todo "${todo.text}" completed: ${todo.completed}`);
+    }
   }
-})
+});
 
-
-deleteTaskBtns.forEach((deleteBtn) => {
-  deleteBtn.addEventListener('click', (e) => {
-    const taskItem = e.target.previousElementSibling
-    const taskItemId = taskItem.id
-    todoList = todoList.filter((todo) => todo.id !== taskItemId)
-  })
-})
-
-
-
-
-
-function updateTodo(id) {
-  handleTodoClick()
-  const todoItem = todoList.find((value) => value.id === id)
-  if (todoItem.completed) {
-    todoItem.completed = false
-    return todoItem
-  } else {
-    todoItem.completed = true
-    return todoItem
+document.addEventListener('click', (event) => {
+  if (event.target.closest('#task-list')) {
+    console.log(`[Event Bubbling on DOCUMENT] The click on <${event.target.tagName.toLowerCase()}> bubbled up to the document root.`);
   }
+});
+var name = "heloo"
+const showTodoList = () => {
+  todoListUl.innerHTML = "";
+  todoList.forEach((item) => {
+    const todoItem = createTodoLi(item);
+    todoListUl.appendChild(todoItem);
+  });
 }
-console.log(updateTodo(2))

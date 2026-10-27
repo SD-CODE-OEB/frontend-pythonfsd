@@ -9,17 +9,34 @@
   <link rel="stylesheet" href="./src/style.css">
 </head>
 
-<body class="h-screen m-4">
-  <h1 class="text-5xl font-bold">Todo list</h1>
-  <button type="button" class="p-3 bg-blue-900 text-white rounded-lg" id="add-task-btn">Add Todo</button>
-  <ul id="task-list">
+<body class="m-6">
+  <h1 class="text-4xl font-bold mb-4">Todo list</h1>
+  <button type="button"
+    class="min-h-[44px] px-4 py-2 bg-blue-600 sm:hover:bg-blue-700 text-white rounded-lg cursor-pointer"
+    id="add-task-btn">Add Todo</button>
 
-  </ul>
-  <form class="todo-form">
-    <label for="todo-input">Todo text</label>
-    <input type="text" name="todo-input" id="todo-input" class="" /> <br>
-    <button type="submit">Create Todo</button>
+  <ul id="task-list" class="my-4"></ul>
+
+  <form class="todo-form flex gap-2 items-center" style="display: none;">
+    <label for="todo-input">Todo text:</label>
+    <input type="text" name="todo-input" id="todo-input" class="border px-3 py-2 rounded text-base" />
+    <button type="submit"
+      class="min-h-[44px] px-4 py-2 bg-green-600 sm:hover:bg-green-700 text-white rounded-lg cursor-pointer">Create
+      Todo</button>
   </form>
+  <!-- <div class="card h-48 w-48 border flex flex-col justify-between">
+    <div class="img h-32 w-full border"></div>
+    <div class="flex justify-between items-center">
+
+      <div class="btn add-to-cart cursor-pointer border bg-black text-white">
+        add to cart
+      </div>
+      <div class="wishlist cursor-pointer border bg-yellow-400 text-black">
+        Wishlist
+      </div>
+    </div>
+  </div> -->
+
   <script type="module" src="./src/todolist.js"></script>
 </body>
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sync vs Async</title>
+</head>
+
+<body>
+  <h1>Sync vs Async</h1>
+
+  <script>
+    console.log("Starting");
+    console.log("running")
+
+    // function add(a, b) {
+    //   return a + b
+    // }
+    // setTimeout(() => {
+    //   console.log("row 1")
+    // }, 1000)
+    // setTimeout(() => {
+    //   console.log("row 2")
+    //   console.log(add(3, 8))
+    // }, 2000)
+    // setTimeout(() => {
+    //   console.log("last");
+    // }, 0)
+    // setTimeout(() => {
+    //   console.log("row 3 ")
+    // }, 3000)
+    // console.log("Ending");
+
+    // generate a number between 1 - 10 after n seconds  
+
+
+
+
+
+    let numberOfOtps = 5;
+
+    function generateOTP() {
+      let otp = String(Math.floor(Math.random() * 10000));
+      if (otp.length === 4) {
+        console.log(otp)
+      }
+    }
+    function OtpHandling() {
+      let count = 0;
+      let otp = setInterval(() => {
+        generateOTP()
+        count++
+        if (count === 5) {
+          clearInterval(otp)
+          console.log("stopped")
+        }
+      }, 1000)
+    };
+
+
+    OtpHandling()
+
+    // setInterval(() => {
+    //   console.log("running....")
+    // }, 3000)
+
+
+
+  </script>
+</body>
+
+</html>

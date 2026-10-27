@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises</title>
+</head>
+
+<body>
+
+  <h1>Promises</h1>
+  <script>
+    function calculation(add, subtract) {
+      console.log("adding numbers", add(4, 5))
+      console.log("subgtracting numbers", subtract(5, 4))
+    }
+
+    function add(n1, n2) {
+      return (n1 + n2)
+    }
+
+    function subtract(n1, n2) {
+      return (n1 - n2)
+    }
+
+    // calculation(add, subtract)
+    // let value1 = false
+    // const promiseDemo = new Promise((resolve, reject) => {
+    //   // const apiData =
+    //   //api call 
+    //   const data = "data is successfully fetched"
+    //   if (value1) {
+    //     resolve(data)
+    //   }
+    //   else {
+    //     const error = "api data not found"
+    //     reject(error)
+    //   }
+    // });
+    // console.log(promiseDemo)
+
+
+    const productsData = fetch('https://dummyjson.com/products')
+      .then(res => (res.json())).then(res => (res.products))
+      .catch(err => console.log(err))
+
+  </script>
+</body>
+
+</html>
