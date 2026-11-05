@@ -3,6 +3,7 @@ import heroImg from './assets/hero.png'
 import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
 import { setupCounter } from './counter.js'
+import productsData, { add } from './dataFetch.js'
 
 document.querySelector('#app').innerHTML = `
 <section id="center">
@@ -56,5 +57,12 @@ document.querySelector('#app').innerHTML = `
 <div class="ticks"></div>
 <section id="spacer"></section>
 `
-
+console.log(productsData)
+try {
+  const value = await add();
+  console.log(value)
+} catch (errr) {
+  console.log(errr)
+}
+console.log("error cmaE ABOVE ME ")
 setupCounter(document.querySelector('#counter'))
