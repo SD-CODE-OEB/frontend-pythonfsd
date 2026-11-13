@@ -1,21 +1,38 @@
-import { Mybutton, YourButton } from "./Mybutton";
-import Card from "./Card";
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import Products from "./Products";
-import Header from "./Header";
 import Login from "./Login";
-import TitleText from "./TitleText";
+import Home from "./Home";
+import Header from "./Header";
+import Profile from "./Profile";
+import { useState } from "react";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false);
+  const [buttonText, setButtonText] = useState("Login");
+  const [currentUser, setCurrentUser] = useState(null);
+
   return (
-    <>
-      <Header login={showLogin} setLogin={setShowLogin} />
-      <div className="flex justify-center items-center">
-        {showLogin && <Login />}
-      </div>
-      <TitleText />
-    </>
+    <BrowserRouter>
+      <Header buttonText={buttonText} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/products" element={<Products showProducts={true} />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              changeButtonText={setButtonText}
+              onLoginSuccess={setCurrentUser}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={<Profile currentUser={currentUser} />}
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
